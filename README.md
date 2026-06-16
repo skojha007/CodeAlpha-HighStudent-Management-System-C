@@ -1,1 +1,173 @@
-# CodeAlpha-HighStudent-Management-System-C
+# Student Management System in C
+
+A complete, menu-driven **Student Management System** written in C using binary file I/O. All student records are persisted to disk in `students.dat` between sessions.
+
+---
+
+## Features
+
+| # | Feature | Description |
+|---|---|---|
+| 1 | **Add Student** | Input roll number, name, branch, year, marks — grade auto-calculated |
+| 2 | **Delete Student** | Remove a record by roll number |
+| 3 | **Update Student** | Edit name, branch, year, or marks (grade recalculates on marks change) |
+| 4 | **Search Student** | Find a student by roll number, displayed in a formatted box |
+| 5 | **Display All Students** | View all records in a formatted table |
+| 6 | **Sort Students** | Sort by marks (highest first), name (A–Z), or roll number |
+| 7 | **Export to CSV** | Write all records to `students.csv` (opens in Excel / Google Sheets) |
+| 8 | **Generate Report** | Summary: total students, average marks, top/bottom scorer, grade distribution chart |
+| 9 | **Search by Name** | Partial, case-insensitive name search |
+| 10 | **Filter by Branch** | List all students in a branch (partial match, case-insensitive) with avg marks |
+| 11 | **Filter by Year** | List all students in a year (1–4) with count, avg marks, grade breakdown |
+| 12 | **Backup Data** | Copy `students.dat` to a timestamped backup file |
+| 13 | **Restore Data** | Browse available backups and restore any one with confirmation |
+| 14 | **Delete All Students** | Wipe all records — requires typing `DELETE ALL` to confirm |
+| 15 | **Top N Students** | Display the top N scorers ranked with medals for ranks 1–3 |
+| 16 | **Failing Students** | List all Grade F students with marks needed to reach passing (50) |
+| 17 | **Exit** | Quit the program |
+
+---
+
+## Grade System
+
+| Marks | Grade |
+|---|---|
+| 90 – 100 | A |
+| 75 – 89 | B |
+| 60 – 74 | C |
+| 50 – 59 | D |
+| Below 50 | F |
+
+---
+
+## Data Structure
+
+```c
+struct Student {
+    int   rollNumber;
+    char  name[50];
+    char  branch[30];
+    int   year;
+    float marks;
+    char  grade;
+};
+```
+
+---
+
+## File Handling
+
+| File | Purpose |
+|---|---|
+| `students.dat` | Binary file — primary data store (auto-created on first add) |
+| `students.csv` | CSV export (created by option 7) |
+| `students_backup_YYYYMMDD_HHMMSS.dat` | Timestamped backups (created by option 12) |
+
+---
+
+## Validation Rules
+
+- Roll number must be a **positive integer** and **unique**
+- Marks must be between **0 and 100**
+- Name and branch **cannot be empty**
+- Year must be between **1 and 4**
+- Clear error messages shown for all invalid inputs — program never crashes on bad input
+
+---
+
+## Build & Run
+
+### Requirements
+- GCC (any version supporting C11)
+- Linux / macOS / Windows (MinGW)
+
+### Compile
+```bash
+gcc -Wall -std=c11 -o student_mgmt main.c
+```
+
+### Run
+```bash
+./student_mgmt
+```
+
+---
+
+## Sample Output
+
+### Main Menu
+```
+============================================
+       STUDENT MANAGEMENT SYSTEM
+============================================
+  1. Add Student          9. Search by Name
+  2. Delete Student      10. Filter by Branch
+  3. Update Student      11. Filter by Year
+  4. Search Student      12. Backup Data
+  5. Display All         13. Restore Data
+  6. Sort Students       14. Delete All Students
+  7. Export to CSV       15. Top N Students
+  8. Generate Report     16. Failing Students
+                         17. Exit
+============================================
+Enter your choice:
+```
+
+### Student Details (Search)
+```
+  ╔══════════════════════════════╗
+  ║     STUDENT DETAILS          ║
+  ╠══════════════════════════════╣
+  ║ Roll Number : 101            ║
+  ║ Name        : Rahul Sharma   ║
+  ║ Branch      : CSE            ║
+  ║ Year        : 2              ║
+  ║ Marks       : 85.50          ║
+  ║ Grade       : B              ║
+  ╚══════════════════════════════╝
+```
+
+### Performance Report
+```
+===============================================
+          STUDENT PERFORMANCE REPORT
+===============================================
+  Total Students    : 3
+  Average Marks     : 74.17
+-----------------------------------------------
+  Highest Scorer    : Priya Singh (Roll 102) — 92.00 (A)
+  Lowest  Scorer    : Amit Kumar  (Roll 103) — 45.00 (F)
+-----------------------------------------------
+  Grade Distribution:
+    Grade A (90-100) :   1 student(s) ( 33.3%)  [#..]
+    Grade B (75-89)  :   1 student(s) ( 33.3%)  [#..]
+    Grade C (60-74)  :   0 student(s) (  0.0%)  [...]
+    Grade D (50-59)  :   0 student(s) (  0.0%)  [...]
+    Grade F (< 50)   :   1 student(s) ( 33.3%)  [#..]
+===============================================
+```
+
+---
+
+## Project Structure
+
+```
+.
+├── main.c          # Complete source code (single file)
+├── students.dat    # Binary data file (auto-generated at runtime)
+├── students.csv    # CSV export (generated by option 7)
+└── README.md       # This file
+```
+
+---
+
+## Author
+
+**skojha007**
+Project: CodeAlpha Student Management System Task
+
+---
+
+## License
+
+This project is open source and free to use for educational purposes.
