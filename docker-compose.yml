@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  student-mgmt:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: student_management_system
+    volumes:
+      - ./data:/app/data
+      - student-data:/app
+    stdin_open: true
+    tty: true
+    environment:
+      - DATA_DIR=/app/data
+    networks:
+      - student-network
+
+networks:
+  student-network:
+    driver: bridge
+
+volumes:
+  student-data:
+    driver: local
