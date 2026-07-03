@@ -1,0 +1,17 @@
+{
+  "builds": [
+    {
+      "src": "main.c",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "public"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "status": 404
+    }
+  ]
+}
