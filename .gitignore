@@ -1,0 +1,36 @@
+# Build artifacts
+build/
+dist/
+*.o
+*.a
+*.so
+student_mgmt
+student_mgmt_debug
+
+# Runtime generated files
+students.dat
+students.csv
+students_backup_*.dat
+
+# Editor and IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Distribution packages
+*.tar.gz
+*.zip
